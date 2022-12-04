@@ -19,3 +19,10 @@ class TestCSVPrinter(unittest.TestCase):
         with self.assertRaises(FileNotFoundError):
             printer = CSVPrinter("no_exist.csv")
             l = printer.read()
+
+    def test_read4(self):
+        printer = CSVPrinter("tests/sample.csv")
+        lines = printer.read()
+        self.assertEqual(3, len(lines))
+        for line in lines:
+            self.assertEqual(3, len(line))

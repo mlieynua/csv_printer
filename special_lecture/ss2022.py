@@ -1,4 +1,5 @@
 import csv
+import re
 
 
 class CSVPrinter:
@@ -9,4 +10,8 @@ class CSVPrinter:
         with open(self.file_name) as f:
             reader = csv.reader(f)
             lines = [row for row in reader]
-        return lines
+        if all(True if len(row) == 3 else False for row in lines):
+            lines = [int(re.sub("(value|[A-Z])", "", val)) for row in lines for val in row]
+            return lines
+        else:
+            return None
