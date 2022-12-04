@@ -12,7 +12,7 @@ class CSVPrinter:
             lines = [row for row in reader]
         if all(True if len(row) == 3 else False for row in lines):
             lines = [int(re.sub("(value|[A-Z])", "", val)) for row in lines for val in row]
-            ints = ",".join(lines)
+            ints = set(lines)
             return lines
         else:
             return None
